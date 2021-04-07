@@ -30,7 +30,6 @@
     <nav class="MatNav" id="nav">
     </nav>
     </div>
-    <div class="container">
       <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -38,8 +37,7 @@
                   Settings
               </div>
               <div class="card-body">
-                  <button class="btn btn-primary input-sm " onclick="logout()"> Logout</button>
-                  <div class="form-group" >
+                <div class="form-group" >
                     <label for="stop" class="col-lg-2 control-label">Enter bus number</label>
                     <div class="col-lg-10">
                         <input type="text" class="form-control" id="bus_no" placeholder="Enter bus no">
@@ -51,48 +49,38 @@
                       <input type="text" class="form-control" id="date" placeholder="Enter yyyy-mm-dd">
                   </div>
               </div>
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn bg-success btn-block" onclick="get_attendance_admin()">Search</button>
-                    </div>
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="card">        
-                            <div class="col-md-12"  style="overflow-x:auto;"> 
-                              <table width=100%; id="table1">
-                                <tr>
-                                    <th class="col1">
-                                        <p>S No</p>
-                                    </th>
-                                    <th class="col2">
-                                        <p>Name</p>
-                                    </th>
-                                    <th class="col3">
-                                        <p>Department</p>
-                                    </th>
-                                    <th class="col4">
-                                      <p>status</p>
-                                  </th>
-                                </tr>
-                                
-                                
-                              </table>
-                                  
-                              </tr>
-                            </div>
-                          </div>
-                        </div>
+              <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn bg-success btn-block" onclick="get_attendance_admin()">Search</button>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">        
+                      <div class="col-md-12"  style="overflow-x:auto;"> 
+                        <table width=100%; id="table1">
+                          <tr>
+                              <th class="col1">
+                                  <p>S No</p>
+                              </th>
+                              <th class="col2">
+                                  <p>Name</p>
+                              </th>
+                              <th class="col3">
+                                  <p>Department</p>
+                              </th>
+                              <th class="col4">
+                                <p>status</p>
+                            </th>
+                          </tr>  
+                        </table>    
                       </div>
                     </div>
+                  </div>
                 </div>
               </div>
+              </div>
             </div>
-          <div>
-        </div>
       </div>
-    </div>
-
     <script src="../dist/scripts/jquery.min.js"></script>
 
     <script src="../dist/scripts/popper.min.js"></script>
