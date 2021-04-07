@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+    <head>
+        
+        <script src="../../plugins/cordova-plugin-qrscanner/dist/cordova-plugin-qrscanner-lib.min.js"></script>
+        <!-- <script src="../../plugins/cordova-plugin-qrscanner/src/browser/src/cordova-plugin.js"></script> -->
+        <script src="qr.js"></script>
+    
+  <title>QRScanner Library Test</title>
+  <script>
+    function prepare(){
+      QRScanner.prepare();
+    }
+    function scan(){
+      QRScanner.scan(
+      function(err, result){
+        if(err) {
+            alert('scan error:', result);
+        } else {
+          alert('result: ' + result);
+        }
+      });
+    }
+    function cancelScan(){
+      QRScanner.cancelScan();
+    }
+    function frontCamera(){
+      QRScanner.useFrontCamera();
+    }
+    function backCamera(){
+      QRScanner.useBackCamera();
+    }
+    function show(){
+      QRScanner.show();
+    }
+    function hide(){
+      QRScanner.hide();
+    }
+    function pausePreview(){
+      QRScanner.pausePreview();
+    }
+    function resumePreview(){
+      QRScanner.resumePreview();
+    }
+    function destroy(){
+      QRScanner.destroy();
+    }
+    function getStatus(){
+      QRScanner.getStatus(console.log);
+    }
+    function testAll(){
+      alert('Destroying QRScanner to test everything...');
+      QRScanner.destroy();
+      console.log('Preparing QRScanner...');
+      QRScanner.prepare(function(err, status){
+        if(err){
+          alert(err._message);
+        } else {
+          alert('QRScanner is initialized. Status:');
+          alert(status);
+          alert('Showing QRScanner...');
+          QRScanner.show(function(){
+            alert('Starting scan...');
+            QRScanner.scan(function(err, result){
+              if(err){
+                alert(err);
+                alert('Scan canceled successfully.');
+                alert('Destroying QRScanner...');
+                QRScanner.destroy(function(status){
+                  alert('QRScanner destroyed. Status:');
+                  alert(status);
+                });
+              }
+            });
+            window.setTimeout(function(){
+              console.log('Pausing preview...');
+              QRScanner.pausePreview(function(){
+                window.setTimeout(function(){
+                  console.log('Resuming preview...');
+                  QRScanner.resumePreview(function(){
+                    // shouldn't work if less than 2 cameras, but shouldn't break everything
+                    console.log('Switching cameras if available...');
+                    QRScanner.useFrontCamera(function(err, status){
+                      console.log('Status:');
+                      console.log(status);
+                      QRScanner.useBackCamera(function(err, status){
+                        // shouldn't work, but shouldn't break everything
+                        console.log('Making sure the lighting functions don\'t break things...');
+                        QRScanner.enableLight();
+                        QRScanner.disableLight();
+                        console.log('Get status:');
+                        QRScanner.getStatus(function(status){
+                          console.log(status);
+                          console.log('Canceling scan...');
+                          QRScanner.cancelScan(function(status){
+                            console.log('Final status:');
+                            console.log(status);
+                          });
+                        });
+
+                      });
+                    });
+                  });
+                }, 1000);
+              });
+            }, 3000);
+          });
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <button onclick="testAll()"><h1>testAll</h1></button>
+  <button onclick="prepare()"><h1>prepare</h1></button>
+  <button onclick="scan()"><h1>scan</h1></button>
+  <button onclick="cancelScan()"><h1>cancelScan</h1></button>
+  <button onclick="frontCamera()"><h1>useFrontCamera</h1></button>
+  <button onclick="backCamera()"><h1>useBackCamera</h1></button>
+  <button onclick="show()"><h1>show</h1></button>
+  <button onclick="hide()"><h1>hide</h1></button>
+  <button onclick="pausePreview()"><h1>pausePreview</h1></button>
+  <button onclick="resumePreview()"><h1>resumePreview</h1></button>
+  <button onclick="destroy()"><h1>destroy</h1></button>
+
+    </body>
+</html>

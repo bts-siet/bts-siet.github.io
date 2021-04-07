@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SRI SHAKTHI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="../dist/css/flat-ui.css" rel="stylesheet">
+    <link href="../dist/css/vendor/font-awesome.css" rel="stylesheet">
+    <link href="../dist/css/nav.css" rel="stylesheet">
+    <link href="../dist/css/custom.css" rel="stylesheet">
+    <style>
+        #bus_no{
+            width: 75%;
+        }
+        button{
+            width: 23%;
+        }
+    </style>
+  </head>
+  
+  <body>
+    <div class="loader loader-border is-active" data-text="Loading..."></div>
+    <div>
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">SRI SHAKTHI</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card card-title">
+              <p><center>Fees Details</center></p>
+          </div>
+          <!-- <select id="bus_id" class="form-control" onchange="getStudentFeesDetails()">
+            <option selected disabled>Select Bus No</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+        </select> -->
+        <div class="form-horizontal">
+            <input type="number" min="1" max="20" placeholder="Enter Bus Number" class="form-input" id="bus_no"/>
+            <button class="btn btn-primary" onclick="getStudentFeesDetails()">GET</button>
+        </div>
+         
+          <div class="card mt-2">        
+            <div class="col-md-12"  style="overflow-x:auto;overflow-y:scroll;"> 
+              
+              <table width=100%; id="table" class="mt-2">
+                <tr>
+                    <th class="col1">
+                        <p>S No</p>
+                    </th>
+                    <th class="col2">
+                        <p>Name</p>
+                    </th>
+                    <th class="col3">
+                        <p>Department</p>
+                    </th>
+                    <th class="col4">
+                        <p>Year</p>
+                    </th>
+                    <th class="col5">
+                        <p>Boarding Point</p>
+                    </th>
+                    <th class="col6">
+                        <p>Fees Status</p>
+                    </th>
+                </tr>
+              </table>
+              </tr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../dist/scripts/jquery.min.js"></script>
+
+    <script src="../dist/scripts/popper.min.js"></script>
+
+    <script src="../dist/scripts/video.js"></script>
+
+    <script src="../dist/scripts/flat-ui.js"></script>
+    <script src="../dist/js/custom.js"></script>
+
+
+    <script>
+        function getStudentFeesDetails(){
+            var bus_no=document.getElementById("bus_no").value;
+            if(Number(bus_no)<0 && Number(bus_no)>20){
+                custom_alert("error","Please Enter value between 1-20")
+            }
+            else{
+                var datastring="bus_no="+bus_no;
+                $.ajax({
+                    url:uri+"get-student-fees-details.php",
+                    data:datastring,
+                    type: "POST",
+                    dataType:"json",
+                    crossDomain:true,
+                    encode:true,  
+                    cache: false,
+                    beforeSend:loader(),
+                    success: function(data)
+                    {   
+                        console.log(data);
+                        $('#table tr').not(function(){
+                            return !!$(this).has('th').length; 
+                            }).remove();
+                        var buses=[],s_no=1,bus_no,route_id,starting_point;
+                        if(data.length>0){
+                            data.forEach(function(data){
+                                if(buses.indexOf(data.bus_no)<0){
+                                    name=data.name;
+                                    dept=data.dept;
+                                    year=data.year;
+                                    boarding_point=data.boarding_point;
+                                    fees_status=data.fees_status;
+                                    if(fees_status=="not_paid"){
+                                        fees_status="Not Paid";
+                                    }
+                                    else if(fees_status=="paid"){
+                                            fees_status="Paid";
+                                    }
+                                    else{
+                                        fees_status="Partially Paid";
+                                    }
+                                    createRow(s_no,name,dept,year,boarding_point,fees_status);
+                                    s_no++;
+                                }
+                            });
+                        }
+                        else{
+                            createNullRow("No Data Found");
+                        }
+                        loaderHide();   
+                    },
+                    error:function(){
+                        custom_alert("error","Network Error");
+                    }
+                });
+            }
+        }
+        function createRow(s_no,name,dept,year,boarding_point,fees_status){
+            var table=document.getElementById("table");
+            var tr=table.insertRow();
+            
+            var col1=tr.insertCell(0);
+            var col2=tr.insertCell(1);
+            var col3=tr.insertCell(2);
+            var col4=tr.insertCell(3);
+            var col5=tr.insertCell(4);
+            var col6=tr.insertCell(5);
+
+            col1.innerHTML=s_no;
+            col2.innerHTML=name;
+            col3.innerHTML=dept;
+            col4.innerHTML=year;
+            col5.innerHTML=boarding_point;
+            col6.innerHTML=fees_status;
+        }
+        function createNullRow(result){
+            var table=document.getElementById("table");
+            var tr=table.insertRow();
+            
+            var col1=tr.insertCell(0);
+            col1.id = "cell";
+            document.getElementById("cell").colSpan = "7"
+
+            col1.innerHTML=result;
+        }
+    </script>
+
+  </body>
+</html>

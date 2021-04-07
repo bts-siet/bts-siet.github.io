@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SRI SHAKTHI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="../dist/css/flat-ui.css" rel="stylesheet">
+    <link href="../dist/css/vendor/font-awesome.css" rel="stylesheet">
+    <link href="../dist/css/nav.css" rel="stylesheet">
+    <link href="../dist/scripts/maps/leaflet.css" rel="stylesheet">
+    <link href="../dist/css/custom.css" rel="stylesheet">
+    <link href="../dist/css/timeline.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <script type="text/javascript" src='../lib/maps/test-credentials.js'></script>    
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <style>
+        #map{ 
+            height: 30vh; 
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="loader loader-border is-active" data-text="Loading..."></div>
+    <div>
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">SRI SHAKTHI</a>
+        </div>
+      </div>
+    </div>
+      <nav class="MatNav">
+        <div class="MatNav-Container">
+           <a class="MatNav-Item-Container" href="maps.html">
+            <i class="material-icons fa fa-map-marker"></i>
+           
+          </a>
+           <a class="MatNav-Item-Container" href="mail.html">
+            <i class="material-icons fa fa-envelope"></i>
+          </a>
+          <a class="MatNav-Item-Container" href="settings.html">
+            <i class="material-icons fa fa-cog"></i>
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+                <div class="card-headed bg-success">
+                    Maps
+                </div>
+                <div class="card-body" id="map">
+                    
+                </div>
+                <div id="panel"></div>
+          </div>
+          <div class="card mt-2 " >
+            <div class="card-headed bg-success">
+                History
+            </div>
+            <div class="card-body" id="history">
+              </div>
+            </div>
+          <div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script src="../dist/scripts/jquery.min.js"></script>
+
+    <script src="../dist/scripts/popper.min.js"></script>
+
+    <script src="../dist/scripts/video.js"></script>
+
+    <script src="../dist/scripts/flat-ui.js"></script>
+
+    <script src="../dist/js/custom.js"></script>  
+
+    <script src="../lib/maps/maps.js"></script>
+
+    <script src="../lib/maps/driver-location.js"></script>
+  </body>
+</html>
