@@ -584,6 +584,9 @@ function createResultCard(stop_name,bus_no,time,driver_name,phone_number){
             cache: false,
             success: function(data)
             {   
+                $('#table1 tr').not(function(){
+                    return !!$(this).has('th').length; 
+                    }).remove();
                 custom_alert("Successfully data viewed","success");
                 console.log(data);
                 var s_no=1,name,department,status;
