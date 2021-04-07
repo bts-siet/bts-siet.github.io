@@ -8,6 +8,7 @@
     <link href="../dist/css/flat-ui.css" rel="stylesheet">
     <link href="../dist/css/vendor/font-awesome.css" rel="stylesheet">
     <link href="../dist/css/nav.css" rel="stylesheet">
+    <link href="../dist/scripts/jquery-ui/jquery-ui.css" rel="stylesheet"/>
     <link href="../dist/scripts/maps/leaflet.css" rel="stylesheet">
     <link href="../dist/css/custom.css" rel="stylesheet">
     <style>
@@ -88,14 +89,19 @@
 
     <script src="../dist/scripts/video.js"></script>
 
+    <script src="../dist/scripts/jquery-ui/jquery-ui.js"></script>
+
     <script src="../dist/scripts/flat-ui.js"></script>
 
     <script src="../dist/scripts/maps/leaflet.js"></script>
 
     <script src="../dist/js/custom.js"></script>
 
-    <!-- <script src="dist/scripts/gulpfile.js"></script> -->
+
     <script>
+      $( ".selector" ).datepicker({
+  dateFormat: "yy-mm-dd"
+});
       $("#nav").load("../lib/component/nav.html");
     </script>
 
