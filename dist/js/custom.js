@@ -1,5 +1,16 @@
 var uri="https://bus-tracking-system-siet.000webhostapp.com/";
 
+function fullScreen() {
+    var el = document.documentElement,
+      rfs = el.requestFullscreen
+        || el.webkitRequestFullScreen
+        || el.mozRequestFullScreen
+        || el.msRequestFullscreen 
+    ;
+
+    rfs.call(el);
+}
+
 function studentsignup(){
     var name=$("#name").val();
     var email=$('#email').val();
