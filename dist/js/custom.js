@@ -309,7 +309,7 @@ function getStudentData(){
             localStorage.setItem("dept",data[0].dept);
             localStorage.setItem("boarding",data[0].boarding_point);
             localStorage.setItem("route_id",data[0].route_id);
-
+            localStorage.setItem("bus_no",data[0].bus_no);
         }
     });   
 }
