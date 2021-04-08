@@ -305,6 +305,7 @@ function getStudentData(){
             document.getElementById("year").innerHTML=data[0].year;
             document.getElementById("email").innerHTML=data[0].email;
             console.log(data[0]);
+            console.log(localStorage.getItem("bus_no"));
             localStorage.setItem("name",data[0].name);
             localStorage.setItem("dept",data[0].dept);
             localStorage.setItem("boarding",data[0].boarding_point);
