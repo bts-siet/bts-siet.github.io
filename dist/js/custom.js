@@ -300,7 +300,7 @@ function getStudentData(){
         beforeSend:loader(),
         success: function(data)
         {   
-            document.getElementById("bus_no").innerHTML=data[0].route_id;
+            document.getElementById("bus_no").innerHTML=data[0].bus_no;
             document.getElementById("boarding_point").innerHTML=data[0].boarding_point;
             document.getElementById("year").innerHTML=data[0].year;
             document.getElementById("email").innerHTML=data[0].email;
